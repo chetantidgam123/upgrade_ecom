@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { error_toast, success_toast } from '../services';
-import { post_data, post_login } from '../fetch';
+import { logData, post_data, post_login } from '../fetch';
 import { TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const AddProduct = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState({
     "name": "",
     "category": "",
-    "price": "",
+    "price": 0,
     "description": "",
     "manufacturer": "",
     "availableItems": "",
@@ -17,7 +19,7 @@ const AddProduct = () => {
 
   const addProduct = async () => {
     if(data.name.trim().length===0 || data.category.trim().length===0 || 
-    data.price.trim().length===0 || data.description.trim().length===0 || 
+    Number(data.price)===0 || data.description.trim().length===0 || 
     data.manufacturer.trim().length===0 || 
     data.availableItems.trim().length===0 ||
     data.imageUrl.trim().length===0
@@ -28,17 +30,21 @@ const AddProduct = () => {
     await post_login('/products/addproduct',data)
     .then((res)=>{
         success_toast('Product added successfully')
-        navigator('/products')
+        navigate('/products')
     }).catch((e)=>{
       error_toast('something went wrong')
     })
-
 
   }
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value })
   }
+  useEffect(()=>{
+    if (!logData()) {
+      navigate('/login')
+    } else {}
+  },[])
   return (
     <div>
       <form className='registerForm'>
@@ -46,7 +52,7 @@ const AddProduct = () => {
         <TextField  name='name' label="Name" variant="outlined" onChange={(e) => { handleChange(e) }} />
         <TextField  name='category' variant='outlined' label='Category' onChange={(e) => { handleChange(e) }} />
         <TextField  name='manufacturer' variant='outlined' label='manufacturer' onChange={(e) => { handleChange(e) }} />
-        <TextField  name='price' variant='outlined' label='Price' onChange={(e) => { handleChange(e) }} />
+        <TextField  name='price' type='number' variant='outlined' label='Price' onChange={(e) => { handleChange(e) }} />
         <TextField  name='availableItems' variant='outlined' label='availableItems' onChange={(e) => { handleChange(e) }} />
         <TextField  name='imageUrl' variant='outlined' label='Image Url' onChange={(e) => { handleChange(e) }} />
         <TextField  name='description' variant='outlined'  label='description' onChange={(e) => { handleChange(e) }} />

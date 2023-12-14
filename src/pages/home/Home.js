@@ -146,7 +146,7 @@ const Home = () => {
                 </Typography>
               </CardContent>
               <CardActions style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Button size="small" variant='contained'>Buy</Button>
+                <Button size="small" variant='contained' onClick={()=>{navigate('/product/'+item.id)}}>Buy</Button>
                 <div>
                   <Button size="small" onClick={() => { navigate('/editproduct/' + item.id) }}><EditIcon /></Button>
                   <Button size="small" onClick={() => { delteSwal(item.id) }}><DeleteIcon /></Button>

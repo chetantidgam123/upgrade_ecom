@@ -57,10 +57,8 @@ const login_post_data = (endpoint, data) => {
     return apiService.post(endpoint,{},{headers:{Authorization:`Basic ${creddentials}`}});
 };
 const logData = ()=>{
-    let data = {
-        'token':localStorage.getItem('token'),
-    } 
-    return data
+       let token=localStorage.getItem('token')
+    return token
 }
 
 export {logData,post_data,login_post_data,get_data,get_login,post_login,put_login,delete_login}

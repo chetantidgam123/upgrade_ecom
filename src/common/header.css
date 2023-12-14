@@ -20,10 +20,6 @@
 }
 .registerForm .MuiFormControl-root{
    margin: 10px 0;
-      /*width: 350px;
-    height: 40px;
-    border: 2px solid gray;
-    border-radius: 4px; */
 }
 .registerForm span{
     border-radius: 50%;

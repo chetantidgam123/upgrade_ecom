@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -53,7 +53,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Header = () => {
-  const [islogin, setIslogin] = React.useState(false)
+  const [islogin, setIslogin] = useState(false)
   const location = useLocation();
   const navigator = useNavigate()
   const logout = () => {
@@ -61,9 +61,12 @@ const Header = () => {
     localStorage.clear();
     navigator('/login')
   }
-  React.useEffect(() => {
+  useEffect(() => {
+    console.log(islogin)
     if (logData()) {
-      setIslogin(true)
+      setIslogin(true);
+    }else{
+      setIslogin(false);
     }
   }, [location])
 

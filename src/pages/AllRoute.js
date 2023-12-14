@@ -5,6 +5,8 @@ import Signup from './Signup'
 import Home from './home/Home'
 import AddProduct from './AddProduct'
 import EditProduct from './EditProduct'
+import ProductDetails from './ProductDetails'
+import AddAddress from './addAddress/AddAddress'
 
 const AllRoute = () => {
     return (
@@ -16,6 +18,8 @@ const AllRoute = () => {
                 <Route path='/products' element={<Home />} />
                 <Route path='/addproduct' element={<AddProduct />} />
                 <Route path='/editproduct/:id' element={<EditProduct />} />
+                <Route path='/product/:id' element={<ProductDetails />} />
+                <Route path='/addaddress/:id/:qty' element={<AddAddress />} />
                 {/* <Route path='/payment' element={<PrivateRoute> <Payment /></PrivateRoute>} />
                 <Route path='/success' element={<PrivateRoute> <PaymetSuccess /></PrivateRoute>} />
                 <Route path="/product/:id" element={<PrivateRoute> <ProductDetails /></PrivateRoute>} />
