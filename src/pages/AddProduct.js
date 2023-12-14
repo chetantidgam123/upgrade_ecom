@@ -27,7 +27,8 @@ const AddProduct = () => {
     }
     await post_login('/products/addproduct',data)
     .then((res)=>{
-        success_toast(res.data.message)
+        success_toast('Product added successfully')
+        navigator('/products')
     }).catch((e)=>{
       error_toast('something went wrong')
     })
@@ -48,7 +49,7 @@ const AddProduct = () => {
         <TextField  name='price' variant='outlined' label='Price' onChange={(e) => { handleChange(e) }} />
         <TextField  name='availableItems' variant='outlined' label='availableItems' onChange={(e) => { handleChange(e) }} />
         <TextField  name='imageUrl' variant='outlined' label='Image Url' onChange={(e) => { handleChange(e) }} />
-        <TextField  name='description' variant='outlined' label='description' onChange={(e) => { handleChange(e) }} />
+        <TextField  name='description' variant='outlined'  label='description' onChange={(e) => { handleChange(e) }} />
         <button type='button' onClick={addProduct} className='loginBtn'>Save Product</button>
       </form>
     </div>

@@ -5,7 +5,7 @@ import AllRoute from './pages/AllRoute';
 
 function App() {
   return (
-    <div className="App">
+    <div className="">
       <Header/>
       <AllRoute/>
     </div>

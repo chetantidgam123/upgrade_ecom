@@ -37,6 +37,20 @@ const post_login = (endpoint,data) => {
 };
     return apiService.post(endpoint,data,{headers:hdrs});
 };
+const put_login = (endpoint,data) => {
+    var hdrs = { 
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+logData().token
+};
+    return apiService.put(endpoint,data,{headers:hdrs});
+};
+const delete_login = (endpoint) => {
+    var hdrs = { 
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+logData().token
+};
+    return apiService.delete(endpoint,{headers:hdrs});
+};
 
 const login_post_data = (endpoint, data) => {
         let creddentials = btoa(data.username+':'+data.password)
@@ -49,4 +63,4 @@ const logData = ()=>{
     return data
 }
 
-export {logData,post_data,login_post_data,get_data,get_login,post_login}
+export {logData,post_data,login_post_data,get_data,get_login,post_login,put_login,delete_login}
