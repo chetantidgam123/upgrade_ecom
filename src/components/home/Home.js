@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { delete_login, get_login, logData } from '../../common/fetch'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { error_toast, success_toast, confirm_toast } from '../../common/services';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -14,6 +14,7 @@ import './home.css'
 import { MenuItem, TextField, ToggleButton, ToggleButtonGroup } from '@mui/material';
 const Home = () => {
   const loggdata = logData();
+  const location = useLocation();
   const navigate = useNavigate();
   const [products1, setProducts1] = useState([])
   const [products, setProducts] = useState([])
@@ -87,10 +88,24 @@ const Home = () => {
     if (!loggdata) {
       navigate('/login')
     } else {
-      getProducts();
+      // getProducts();
       getCategories();
     }
   }, [])
+
+  useEffect(() => {
+    let a = [...products]
+    if(location.pathname.split('/').length>2){
+      a = a.filter((e)=>{
+        return e.name.toLowerCase().includes(location.pathname.split('/')[2].toLowerCase())
+      })
+      setProducts(a)
+    }else{
+      getProducts();
+    }
+      
+  }, [location])
+  
   return (
     <div>
       <ToggleButtonGroup

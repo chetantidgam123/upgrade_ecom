@@ -10,7 +10,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import './header.css'
-import { Button } from '@mui/material';
+import { Button, debounce } from '@mui/material';
 import { logData } from '../../common/fetch';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -60,6 +60,20 @@ const Header = () => {
     localStorage.clear();
     navigator('/login')
   }
+
+  const [timeOut,setTimout] = useState(false)
+  const debounce = (e)=>{
+    if(timeOut){
+      clearTimeout(timeOut)
+  }
+       setTimout(setTimeout(function(){
+        if(e.target.value.trim().length>0){
+          navigator('/products/'+e.target.value)
+        }else{
+          navigator('/products')
+        }
+    },300))
+  }
   useEffect(() => {
       if (logData()) {
       setIslogin(true);
@@ -96,6 +110,7 @@ const Header = () => {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              onInput={(e)=>{debounce(e)}}
             />
           </Search>
           <div className='headerLinks'>
