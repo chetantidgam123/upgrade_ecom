@@ -11,7 +11,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import './header.css'
 import { Button } from '@mui/material';
-import { logData } from '../fetch';
+import { logData } from '../../common/fetch';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -57,13 +57,11 @@ const Header = () => {
   const location = useLocation();
   const navigator = useNavigate()
   const logout = () => {
-    localStorage.removeItem('token');
     localStorage.clear();
     navigator('/login')
   }
   useEffect(() => {
-    console.log(islogin)
-    if (logData()) {
+      if (logData()) {
       setIslogin(true);
     }else{
       setIslogin(false);
@@ -104,7 +102,7 @@ const Header = () => {
             {islogin &&
               <>
                 <NavLink to='products' style={{ margin: 'auto 10px' }} >Home</NavLink>
-                <NavLink to='addproduct' style={{ margin: 'auto 10px' }} >Add Product</NavLink>
+               {logData()?.role=='ADMIN' && <NavLink to='addproduct' style={{ margin: 'auto 10px' }} >Add Product</NavLink>}
                 <Button className='logout' variant='container' color='secondary'onClick={logout}>Logout</Button>
               </>
             }

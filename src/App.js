@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import Header from './common/Header';
-import AllRoute from './pages/AllRoute';
+import Header from './components/header/Header';
+import AllRoute from './common/AllRoute';
 
 function App() {
   return (

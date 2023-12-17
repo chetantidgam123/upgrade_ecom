@@ -5,8 +5,8 @@ import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import { error_toast, success_toast } from '../../services';
-import { get_login, logData, post_login } from '../../fetch';
+import { error_toast, success_toast } from '../../common/services';
+import { get_login, logData, post_login } from '../../common/fetch';
 import { Button, MenuItem, TextField } from '@mui/material';
 const steps = [
     'Item',

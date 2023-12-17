@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { error_toast, success_toast } from '../services';
-import { get_login, logData, put_login } from '../fetch';
+import { error_toast, success_toast } from '../../common/services';
+import { get_login, logData, put_login } from '../../common/fetch';
 import { TextField } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 

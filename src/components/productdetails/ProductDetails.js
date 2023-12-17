@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { get_login, logData } from '../fetch';
+import { get_login, logData } from '../../common/fetch';
 import Chip from '@mui/material/Chip';
 import './productdetails.css'
-import { error_toast } from '../services';
+import { error_toast } from '../../common/services';
 import { Button, TextField } from '@mui/material';
 const ProductDetails = () => {
   const { id } = useParams();

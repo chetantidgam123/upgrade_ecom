@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { error_toast, success_toast } from '../services';
-import { post_data } from '../fetch';
+import { error_toast, success_toast } from '../../common/services';
+import { post_data } from '../../common/fetch';
 import { TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 const Signup = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState({
     "firstName": "",
     "lastName": "",
@@ -29,6 +31,7 @@ const Signup = () => {
     await post_data('/auth/signup',data,{})
     .then((res)=>{
         success_toast(res.data.message)
+        navigate('/login')
     }).catch((e)=>{
       error_toast(e.response.data.message)
     })
@@ -43,7 +46,7 @@ const Signup = () => {
     <div>
       <form className='registerForm'>
         <span><LockOutlinedIcon /></span>
-        <h3 style={{ marginTop: '5px' }}>Sign up</h3>
+        <h3 style={{ marginTop: '5px',textAlign:'center' }}>Sign up</h3>
         <TextField  name='firstName' label="First Name*" variant="outlined" onChange={(e) => { handleChange(e) }} />
         <TextField type="text" name='lastName' variant='outlined' label='Last Name*' onChange={(e) => { handleChange(e) }} />
         <TextField type="email" name='email' variant='outlined' label='Email Address*' onChange={(e) => { handleChange(e) }} />

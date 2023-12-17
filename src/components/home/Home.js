@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { delete_login, get_login, logData } from '../../fetch'
+import { delete_login, get_login, logData } from '../../common/fetch'
 import { useNavigate } from 'react-router-dom';
-import { error_toast, success_toast, confirm_toast } from '../../services';
+import { error_toast, success_toast, confirm_toast } from '../../common/services';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -51,7 +51,7 @@ const Home = () => {
       setProducts(a)
     }
     if (e.target.value === 'new') {
-      a.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+      a.reverse();
       setProducts(a)
     }
   }
@@ -147,10 +147,10 @@ const Home = () => {
               </CardContent>
               <CardActions style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Button size="small" variant='contained' onClick={()=>{navigate('/product/'+item.id)}}>Buy</Button>
-                <div>
+               {logData()?.role=='ADMIN' && <div>
                   <Button size="small" onClick={() => { navigate('/editproduct/' + item.id) }}><EditIcon /></Button>
                   <Button size="small" onClick={() => { delteSwal(item.id) }}><DeleteIcon /></Button>
-                </div>
+                </div>}
               </CardActions>
             </Card>
           )
